@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "urf-8"/>
+</style>
+  </head>
+  <body>
+	<table id = areaLogIn>
+		<tr><td>Username</td><td><input type = text id = loginId value = ""></td></tr>
+		<tr><td>Password</td><td><input type = passwd id = passwd value = "" onKeyupPasswd(event)></td></tr>
+		<tr><td colspan = 2><input type = button value = "Sign in" onclick = fnLogIn()></td></tr>
+	</table>
+	
+	<table id = areaLogOut style = "display : none;">
+		<tr>
+			<td><div id = loginInfo></div></td>
+		</tr>
+		<tr>
+			<td><input type = button value = "Sign out" onclick = fnLogOut()></td>
+		</tr>
+	</table>
+    <script type = "text/javascript">
+      function fnLogIn(){
+		var objLogIn = document.getElementById("loginId");
+		var objPasswd = document.getElementById("passwd");
+		
+		if(objLogIn.value == ""){
+			alert("아이디를 입력하세요 : ");
+			objLogIn.focus();
+			return;
+		}
+		else if(objPasswd.value == ""){
+			alert("비밀번호를 입력하세요 : ");
+			objPasswd.focus();
+			return;
+		}
+		
+		function fnLogOut(){
+			document.getElementById("loginId").value = "";
+			document.getElementById("passwd").value = "";
+			
+			document.getElementById("areaLogIn").style.display = "";
+			document.getElementById("areaLogOut").style.display = "none";
+		}
+		
+		function onKeyupPasswd(ev){
+			vat evKeyup = null;
+			if(ev)
+				evKeyup = ev;
+			else
+				evKeyup = window.event;
+				
+			if(evKeyup.keyCode == 13){
+				document.getElementById("passwd").blur();
+				fnLogIn();
+			}
+		}
+	  }
+    </script>
+  </body>
+</html>
